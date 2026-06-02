@@ -186,7 +186,7 @@ def crear_parser():
         argparse.ArgumentParser: Parser configurado para el programa.
     """
     parser = argparse.ArgumentParser(
-        description="Analiza secuencias de ADN en formato FASTA."
+        description="Analiza secuencias de ADN en formato FASTA y permite aplicar filtros."
     )
 
     parser.add_argument(
