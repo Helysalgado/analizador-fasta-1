@@ -123,5 +123,5 @@ La carpeta `docs` contiene:
 - `diseño.md`: algoritmo del programa y diagrama Mermaid.
 
 ## Autor
-
-Proyecto realizado como práctica de programación, uso de GitHub y análisis básico de archivos FASTA.
+Torres Rojas Camila
+Proyecto realizado como práctica de programación.
