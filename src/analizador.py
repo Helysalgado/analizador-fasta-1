@@ -31,9 +31,6 @@ def leer_fasta(ruta_archivo):
         FileNotFoundError: Si el archivo no existe.
         ValueError: Si el archivo no contiene secuencias válidas.
     """
-    if not os.path.exists(ruta_archivo):
-        raise FileNotFoundError(f"El archivo '{ruta_archivo}' no existe.")
-
     secuencias = []
     encabezado_actual = None
     partes_secuencia = []
@@ -94,10 +91,11 @@ def calcular_gc(secuencia):
     if len(secuencia) == 0:
         return 0.0
 
-    cantidad_g = secuencia.count("G")
-    cantidad_c = secuencia.count("C")
+    seq = secuencia.upper()
+    cantidad_g = seq.count("G")
+    cantidad_c = seq.count("C")
     bases_gc = cantidad_g + cantidad_c
-    gc = (bases_gc / len(secuencia)) * 100
+    gc = (bases_gc / len(seq)) * 100
 
     return gc
 
@@ -226,6 +224,9 @@ def main():
     args = parser.parse_args()
 
     try:
+        if not os.path.exists(args.archivo):
+            raise FileNotFoundError(f"El archivo '{args.archivo}' no existe.")
+
         secuencias = leer_fasta(args.archivo)
         resultados = analizar_secuencias(secuencias)
         resultados_filtrados = filtrar_resultados(
@@ -242,6 +243,10 @@ def main():
     except ValueError as error:
         print(f"Error: {error}", file=sys.stderr)
         sys.exit(1)
+
+    except Exception as error:  # pragma: no cover - unexpected errors
+        print(f"Error inesperado: {error}", file=sys.stderr)
+        sys.exit(2)
 
 
 if __name__ == "__main__":
