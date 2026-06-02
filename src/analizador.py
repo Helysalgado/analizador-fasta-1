@@ -96,7 +96,8 @@ def calcular_gc(secuencia):
 
     cantidad_g = secuencia.count("G")
     cantidad_c = secuencia.count("C")
-    gc = ((cantidad_g + cantidad_c) / len(secuencia)) * 100
+    bases_gc = cantidad_g + cantidad_c
+    gc = (bases_gc / len(secuencia)) * 100
 
     return gc
 
